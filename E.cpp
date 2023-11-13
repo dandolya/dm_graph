@@ -16,20 +16,20 @@ int main()
         matrix[a].push_back(b);
         matrix[b].push_back(a);
     }
-    std::set<int> lists;
+    std::set<int> leaves;
     for (int i = 1; i <= n; i++)
     {
         if (matrix[i].size() == 1)
         {
-            lists.insert(i);
+            leaves.insert(i);
         }
     }
     for (int j = 0; j < n - 2; j++)
     {
-                int i = *lists.begin();
+                int i = *leaves.begin();
                 std::cout << matrix[i][0] << " ";
                 //удалить ребро matrix[i][0] - matrix
-                lists.erase(lists.begin());
+                leaves.erase(leaves.begin());
                 for (int k = 0; k < matrix[matrix[i][0]].size(); k++)
                 {
                     if (matrix[matrix[i][0]][k] == i)
@@ -38,7 +38,7 @@ int main()
                         matrix[matrix[i][0]].erase(iter + k);
                         if (matrix[matrix[i][0]].size() == 1)
                         {
-                            lists.insert(matrix[i][0]);
+                            leaves.insert(matrix[i][0]);
                         }
                         break;
                     }
